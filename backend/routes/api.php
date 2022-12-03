@@ -24,4 +24,6 @@ Route::prefix('v1')->group(function() {
     Route::apiResource('product', 'App\Http\Controllers\ProductController');
     Route::apiResource('payment-method', 'App\Http\Controllers\PaymentMethodController');
     Route::apiResource('postal-code', 'App\Http\Controllers\PostalCodeController');
+    Route::apiResource('sale', 'App\Http\Controllers\SaleController');
+    Route::apiResource('sale-item', 'App\Http\Controllers\SaleItemController');
 });
