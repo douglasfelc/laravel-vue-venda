@@ -1,43 +1,44 @@
 <template>
-  <div class="sale">
+  <div class="sales">
     <h1>Sales</h1>
 
-    <BaseCard>
+    <BaseTable :titles="['Client', 'Payment Method', 'Actions']">
       <template v-slot:body>
-        Form
-        Client: {{ client_id }}
+        <tr v-for="s in sales" :key="s.id" class="cursor-pointer" @click="redirect(s.id)">
+          <td>
+            {{s.client_id}}
+          </td>
+          <td>
+            {{s.payment_methods_id}}
+          </td>
+          <td>
+          </td>
+        </tr>
       </template>
-      <template v-slot:footer>
-        <button type="submit">Save</button>
-      </template>
-    </BaseCard>
+    </BaseTable>
   </div>
 </template>
 
 <script>
-import BaseCard from '@/components/BaseCard.vue'
+import BaseTable from '@/components/BaseTable.vue'
 
 import axios from 'axios';
 
 export default {
   data() {
     return {
-      id: this.$route.params.id,
-      client_id: '',
-      payment_methods_id: ''
+      sales: []
     }
   },
   components: {
-    BaseCard
+    BaseTable
   },
   methods: {
     load() {
       // temp
       let token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzAyNTAzMzYsImV4cCI6MTY3MDI1MzkzNiwibmJmIjoxNjcwMjUwMzM2LCJqdGkiOiJjMFRvbjRzTHB4TlQwTHpTIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.XtUAk5E7wuY8SktjoxrHw-GRUT9hfZFqRDQwhxGsBMQ';
 
-      let url = 'http://localhost:8000/api/v1/sale/'+this.id
-
-      console.log(url);
+      let url = 'http://localhost:8000/api/v1/sale/'
 
       let config = {
         headers: {
@@ -49,17 +50,16 @@ export default {
 
       axios.get(url, config)
         .then(response => {
-          let obj = response.data
-          this.client_id = obj.client_id
-          this.payment_methods_id = obj.payment_methods_id
+          console.log(response.data)
+          this.sales = response.data
         })
         .catch(error => {
             alert(error)
             console.log('Error: ' + error)
         })
       },
-      redirect() {
-        window.open('/sales/', '_self')
+      redirect(id) {
+        window.open('/sale/'+id, '_self')
       }
     },
     mounted() {

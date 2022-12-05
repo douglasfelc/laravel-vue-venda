@@ -13,11 +13,13 @@
 
 <script>
 export default {
-  props: ['titles']
+  props: {
+    titles: []
+  }
 }
 </script>
 
-<style scoped>
+<style>
 table {
   border-collapse: collapse;
   width: 100%;

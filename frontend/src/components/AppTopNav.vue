@@ -1,11 +1,11 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link>
-    <router-link to="/client">Client</router-link>
-    <router-link to="/product">Product</router-link>
-    <router-link to="/postal-code">Postal Code</router-link>
-    <router-link to="/payment-method">Payment Method</router-link>
-    <router-link to="/sale">Sale</router-link>
+    <router-link to="/clients">Clients</router-link>
+    <router-link to="/products">Products</router-link>
+    <router-link to="/postal-codes">Postal Codes</router-link>
+    <router-link to="/payment-methods">Payment Methods</router-link>
+    <router-link to="/sales">Sales</router-link>
   </nav>
 </template>
 
