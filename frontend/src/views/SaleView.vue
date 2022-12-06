@@ -2,11 +2,11 @@
   <div class="sale">
     <h1>Sale</h1>
 
-    <form method="POST" action="" @submit.prevent="addSale()">
+    <form method="POST" action="" @submit.stop.prevent="addSale()">
       <BaseCard title="Client">
         <template v-slot:body>
           <label for="client">Name</label>
-          <select id="client" v-model="client">
+          <select required id="client" v-model="client">
             <option v-for="c, key in $store.state.clients" :key="key" :value="c.id">{{ c.name }}</option>
           </select>
         </template>
@@ -16,28 +16,31 @@
         <template v-slot:body>
           <BaseTable :titles="['Product', 'Quantity', 'Price', 'Total', 'Actions']">
             <template v-slot:body>
-              <tr v-for="s in sales" :key="s.id" class="cursor-pointer" @click="redirect(s.id)">
+              <tr v-for="i, ikey in items" :key="ikey">
                 <td>
-                  <input type="text" id="fname" name="firstname" placeholder="Name..">
+                  <select id="product" v-model="items[ikey].product">
+                    {{ items[ikey].product }}
+                    <option v-for="p, pkey in $store.state.products" :key="pkey" :value="p.id">{{ p.name }}</option>
+                  </select>
                 </td>
                 <td>
-                  <input type="text" id="fname" name="firstname" placeholder="Quantity..">
+                  <input type="text" id="quantity" name="quantity[]" placeholder="Quantity.." v-model="items[ikey].quantity" @change="totalizers()">
                 </td>
                 <td>
-                  <input type="text" id="fname" name="firstname" placeholder="Price..">
+                  <input type="text" id="price" name="price[]" placeholder="Price.." v-model="items[ikey].price" @change="totalizers()">
                 </td>
                 <td>
-                  <input type="text" id="fname" name="firstname" placeholder="Total..">
+                  <input disabled type="text" id="total" name="total[]" placeholder="Total.." v-model="items[ikey].total">
                 </td>
                 <td>
-                  X
+                  <button type="button" @click="delItem(ikey)">X</button>
                 </td>
               </tr>
             </template>
           </BaseTable>
         </template>
         <template v-slot:footer>
-          <BaseButton>
+          <BaseButton @click="addItem()">
             <template v-slot>
               New product
             </template>
@@ -50,13 +53,13 @@
       <BaseCard title="Payment Method">
         <template v-slot:body>
           <label for="payment_method">Type</label>
-          <select id="payment_method" v-model="payment_method">
-            <option v-for="p, key in $store.state.payment_methods" :key="key" :value="p.id">{{ p.name }} {{ p.installments }}</option>
+          <select required id="payment_method" v-model="payment_method">
+            <option v-for="p, key in $store.state.payment_methods" :key="key" :value="p.id">{{ p.name }} ({{ p.installments }}x)</option>
           </select>
         </template>
       </BaseCard>
 
-      <BaseButton>
+      <BaseButton type="submit">
         <template v-slot>
           Save
         </template>
@@ -78,7 +81,8 @@ export default {
       id: this.$route.params.id,
       client: '',
       payment_method: '',
-      total: 999.99
+      total: 0,
+      items: []
     }
   },
   components: {
@@ -88,18 +92,45 @@ export default {
   },
   methods: {
 
+    totalizers() {
+      this.total = 0;
+      for(let i = 0; i < this.items.length; i++){ 
+        this.items[i].total = this.items[i].quantity * this.items[i].price
+        this.total+= this.items[i].total
+      }
+    },
+
+    addItem() {
+      this.items.push({
+        id: 0,
+        product: '',
+        quantity: 1,
+        price: 0,
+        total: 0,
+      })
+
+      this.totalizers()
+    },
+
+    delItem(k) {
+      this.items.splice(k, 1)
+      this.totalizers()
+    },
+
     addSale() {
       let formData = new FormData();
       formData.append('token', this.$store.state.token)
       formData.append('client_id', this.client)
       formData.append('payment_methods_id', this.payment_method)
+      formData.append('items', JSON.stringify(this.items))
 
       this.$store.dispatch('addSale', formData)
     },
 
     load() {
 
-      if( this.id ){
+      if( this.$route.params.id ){
+        this.id = this.$route.params.id
 
         // temp
         let token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzAyNjc3NzgsImV4cCI6MTY3MDI3MTM3OCwibmJmIjoxNjcwMjY3Nzc4LCJqdGkiOiI0VExqQWltQUZCUnE2aE1lIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.EGcQdwSdwh2naaYc6CM2wbL97GTQDECDuVMzZ3H2w50';
@@ -138,6 +169,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getClients')
+    this.$store.dispatch('getProducts')
     this.$store.dispatch('getPaymentMethods')
   }
 }

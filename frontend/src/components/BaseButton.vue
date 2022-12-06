@@ -1,6 +1,6 @@
 <template>
   <div :class="baseClass">
-    <button @click="onClick()">
+    <button :type="type" @click="onClick()">
       <slot></slot>
     </button>
   </div>
@@ -9,6 +9,10 @@
 <script>
 export default {
   props: {
+    type: {
+      type: String,
+      default: 'button'
+    },
     redirect: {
       type: String,
       default: ''

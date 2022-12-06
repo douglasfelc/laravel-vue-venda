@@ -4,7 +4,7 @@
 
     <BaseTable :titles="['Code', 'Actions']">
       <template v-slot:body>
-        <tr v-for="p in $store.state.postal_codes" :key="p.id" class="cursor-pointer" @click="redirect(p.id)">
+        <tr v-for="p in $store.state.postal_codes" :key="p.id" @click="redirect(p.id)">
           <td>
             {{p.code}}
           </td>

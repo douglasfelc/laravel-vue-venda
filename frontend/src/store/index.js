@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzAzMjAwNzAsImV4cCI6MTY3MDMyMzY3MCwibmJmIjoxNjcwMzIwMDcwLCJqdGkiOiJtOXBweW1VMGh5QTNtdGtSIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.HgUSdvFXOSf0n_PLxE4CPip-i7j6UhLFk0COsW_58P0',
+    token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzAzNTE0NDksImV4cCI6MTY3MDM1NTA0OSwibmJmIjoxNjcwMzUxNDQ5LCJqdGkiOiJpQUZPYzB3eU9wWWdjVk85Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.--2jcmTKsKwkOQDiUe2afATXrANBZDQwGHXrLF-4sug',
     clients: {},
     payment_methods: {},
     postal_codes: {},
@@ -33,6 +33,7 @@ export default createStore({
 
     addSale(context, data) {
       let url = 'http://localhost:8000/api/v1/sale/'
+      let url_item = 'http://localhost:8000/api/v1/sale-item/'
 
       let config = {
         headers: {
@@ -42,37 +43,39 @@ export default createStore({
         }
       }
 
+      let items = JSON.parse(data.get('items'))
+
       data.delete('token');
+      data.delete('items');
 
       axios.post(url, data, config)
-    .then(response => {
-        console.log(response)
+        .then(response => {
+          console.info(response.data.id)
 
-        /*
-        let url = 'http://localhost:8000/api/v1/sale_item/'
+          items.forEach((item) => {
+            let formData = new FormData();
+            formData.append('sales_id', response.data.id)
+            formData.append('product_id', item.product)
+            formData.append('quantity', item.quantity)
+            formData.append('price', item.price)
 
-        let formData = new FormData();
-        formData.append('user_id', 1)
-        formData.append('video_id', response._id)
-
-        axios.post(url, formData, config)
-            .then(response => {
+            axios.post(url_item, formData, config)
+              .then(function(response) {
                 console.log(response)
-            })
-            .catch(error => {
-                alert('Error: ' + error)
-                console.log('Error: ' + error)
-            })
-        */
+              })
+              .catch(function(error) {
+                console.log(error);
+              });
 
-        alert('Successful sale')
-        window.open('/sales', '_self')
-      })
-      .catch(error => {
-          alert(error)
-          console.log('Error: ' + error)
-      })
+          })
 
+          alert('Successful sale')
+          window.open('/sales', '_self')
+        })
+        .catch(error => {
+            alert(error)
+            console.log('Error: ' + error)
+        })
     },
 
     getSales({ commit, state }) {

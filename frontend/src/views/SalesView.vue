@@ -10,9 +10,12 @@
       </template>
     </BaseTop>
 
-    <BaseTable :titles="['Created', 'Client', 'Payment Method', 'Actions']">
+    <BaseTable :titles="['Number', 'Created', 'Client', 'Payment Method', 'Actions']">
       <template v-slot:body>
-        <tr v-for="s in $store.state.sales" :key="s.id" class="cursor-pointer" @click="redirect(s.id)">
+        <tr v-for="s in $store.state.sales" :key="s.id" @click="redirect(s.id)">
+          <td>
+            {{s.id}}
+          </td>
           <td>
             {{s.created_at}}
           </td>
