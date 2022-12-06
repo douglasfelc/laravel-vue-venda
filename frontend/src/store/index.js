@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzAzNTE0NDksImV4cCI6MTY3MDM1NTA0OSwibmJmIjoxNjcwMzUxNDQ5LCJqdGkiOiJpQUZPYzB3eU9wWWdjVk85Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.--2jcmTKsKwkOQDiUe2afATXrANBZDQwGHXrLF-4sug',
+    token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzAzNjIzNDAsImV4cCI6MTY3MDM2NTk0MCwibmJmIjoxNjcwMzYyMzQwLCJqdGkiOiJQZXl0bVQ1b2VTOHFhQ29wIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0GHPr2NX1P22oUIl1QoswJVR8D4eZrl72m5bumTOyL8',
     clients: {},
     payment_methods: {},
     postal_codes: {},
@@ -30,6 +30,102 @@ export default createStore({
     }
   },
   actions: {
+
+    addClient(context, data) {
+      let url = 'http://localhost:8000/api/v1/client/'
+
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': data.get('token')
+        }
+      }
+
+      data.delete('token');
+
+      axios.post(url, data, config)
+        .then(() => {
+          alert('Successful Client Registration')
+          window.open('/clients', '_self')
+        })
+        .catch(error => {
+            alert(error)
+            console.log('Error: ' + error)
+        })
+    },
+
+    addPostalCode(context, data) {
+      let url = 'http://localhost:8000/api/v1/postal-code/'
+
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': data.get('token')
+        }
+      }
+
+      data.delete('token');
+
+      axios.post(url, data, config)
+        .then(() => {
+          alert('Successful Postal Code Registration')
+          window.open('/postal-codes', '_self')
+        })
+        .catch(error => {
+            alert(error)
+            console.log('Error: ' + error)
+        })
+    },
+
+    addProduct(context, data) {
+      let url = 'http://localhost:8000/api/v1/product/'
+
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': data.get('token')
+        }
+      }
+
+      data.delete('token');
+
+      axios.post(url, data, config)
+        .then(() => {
+          alert('Successful Product Registration')
+          window.open('/products', '_self')
+        })
+        .catch(error => {
+            alert(error)
+            console.log('Error: ' + error)
+        })
+    },
+
+    addPaymentMethod(context, data) {
+      let url = 'http://localhost:8000/api/v1/payment-method/'
+
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': data.get('token')
+        }
+      }
+
+      data.delete('token');
+
+      axios.post(url, data, config)
+        .then(() => {
+          alert('Successful Payment Method Registration')
+          window.open('/payment-methods', '_self')
+        })
+        .catch(error => {
+            alert(error)
+            console.log('Error: ' + error)
+        })
+    },
 
     addSale(context, data) {
       let url = 'http://localhost:8000/api/v1/sale/'

@@ -1,6 +1,14 @@
 <template>
   <div class="clients">
-    <h1>Clients</h1>
+    <BaseTop title="Clients">
+      <template v-slot>
+        <BaseButton redirect="/new-client">
+          <template v-slot>
+            New
+          </template>
+        </BaseButton>
+      </template>
+    </BaseTop>
 
     <BaseTable :titles="['Name', 'Email', 'Phone', 'Actions']">
       <template v-slot:body>
@@ -24,10 +32,14 @@
 </template>
 
 <script>
+import BaseTop from '@/components/BaseTop.vue'
+import BaseButton from '@/components/BaseButton.vue'
 import BaseTable from '@/components/BaseTable.vue'
 
 export default {
   components: {
+    BaseTop,
+    BaseButton,
     BaseTable
   },
   methods: {

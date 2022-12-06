@@ -1,6 +1,14 @@
 <template>
   <div class="payment-methods">
-    <h1>Payment Methods</h1>
+    <BaseTop title="Payment Methods">
+      <template v-slot>
+        <BaseButton redirect="/new-payment-method">
+          <template v-slot>
+            New
+          </template>
+        </BaseButton>
+      </template>
+    </BaseTop>
 
     <BaseTable :titles="['Name', 'Installments', 'Actions']">
       <template v-slot:body>
@@ -20,6 +28,8 @@
 </template>
 
 <script>
+import BaseTop from '@/components/BaseTop.vue'
+import BaseButton from '@/components/BaseButton.vue'
 import BaseTable from '@/components/BaseTable.vue'
 
 export default {
@@ -29,6 +39,8 @@ export default {
     }
   },
   components: {
+    BaseTop,
+    BaseButton,
     BaseTable
   },
   methods: {

@@ -1,6 +1,14 @@
 <template>
   <div class="postal-codes">
-    <h1>Postal Codes</h1>
+    <BaseTop title="Postal Codes">
+      <template v-slot>
+        <BaseButton redirect="/new-postal-code">
+          <template v-slot>
+            New
+          </template>
+        </BaseButton>
+      </template>
+    </BaseTop>
 
     <BaseTable :titles="['Code', 'Actions']">
       <template v-slot:body>
@@ -17,10 +25,14 @@
 </template>
 
 <script>
+import BaseTop from '@/components/BaseTop.vue'
+import BaseButton from '@/components/BaseButton.vue'
 import BaseTable from '@/components/BaseTable.vue'
 
 export default {
   components: {
+    BaseTop,
+    BaseButton,
     BaseTable
   },
   methods: {

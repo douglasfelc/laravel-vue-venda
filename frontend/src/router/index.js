@@ -10,15 +10,17 @@ const routes = [
   {
     path: '/clients',
     name: 'clients',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "clients" */ '../views/ClientsView.vue')
   },
   {
     path: '/client/:id',
     name: 'client',
     component: () => import(/* webpackChunkName: "client" */ '../views/ClientView.vue')
+  },
+  {
+    path: '/new-client',
+    name: 'new-client',
+    component: () => import(/* webpackChunkName: "new-client" */ '../views/ClientView.vue')
   },
   {
     path: '/products',
@@ -31,6 +33,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "product" */ '../views/ProductView.vue')
   },
   {
+    path: '/new-product',
+    name: 'new-product',
+    component: () => import(/* webpackChunkName: "new-product" */ '../views/ProductView.vue')
+  },
+  {
     path: '/postal-codes',
     name: 'postal-codes',
     component: () => import(/* webpackChunkName: "postal-codes" */ '../views/PostalCodesView.vue')
@@ -41,6 +48,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "postal-code" */ '../views/PostalCodeView.vue')
   },
   {
+    path: '/new-postal-code',
+    name: 'new-postal-code',
+    component: () => import(/* webpackChunkName: "new-postal-code" */ '../views/PostalCodeView.vue')
+  },
+  {
     path: '/payment-methods',
     name: 'payment-methods',
     component: () => import(/* webpackChunkName: "payment-methods" */ '../views/PaymentMethodsView.vue')
@@ -49,6 +61,11 @@ const routes = [
     path: '/payment-method/:id',
     name: 'payment-method',
     component: () => import(/* webpackChunkName: "payment-method" */ '../views/PaymentMethodView.vue')
+  },
+  {
+    path: '/new-payment-method',
+    name: 'new-payment-method',
+    component: () => import(/* webpackChunkName: "new-payment-method" */ '../views/PaymentMethodView.vue')
   },
   {
     path: '/sales',
