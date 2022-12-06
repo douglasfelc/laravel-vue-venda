@@ -29,11 +29,6 @@ nav a:hover {
   background-color: #187bcd;
 }
 
-nav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
 nav a.router-link-exact-active {
   background-color: #1167b1;
 }

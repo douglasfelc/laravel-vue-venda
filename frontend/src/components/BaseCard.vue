@@ -27,8 +27,10 @@ export default {
 
 <style scoped>
 .card {
+  background-color: #fff;
   border: 1px solid #eeeeee;
   padding: 15px;
+  margin-bottom: 15px;
 }
 
 .card-header {
