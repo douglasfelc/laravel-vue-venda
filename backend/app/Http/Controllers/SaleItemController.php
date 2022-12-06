@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSaleItemRequest;
 use App\Http\Requests\UpdateSaleItemRequest;
 use App\Models\SaleItem;
+use App\Models\Product;
 
 class SaleItemController extends Controller
 {
@@ -26,6 +27,9 @@ class SaleItemController extends Controller
      */
     public function store(StoreSaleItemRequest $request)
     {
+        // Decrement stock
+        Product::find($request['product_id'])->decrement('quantity', $request['quantity']);
+
         return SaleItem::create($request->all());
     }
 
@@ -60,6 +64,9 @@ class SaleItemController extends Controller
      */
     public function destroy(SaleItem $saleItem)
     {
+        // Increment stock
+        Product::find($saleItem['product_id'])->increment('quantity', $saleItem['quantity']);
+        
         $saleItem->delete();
         return ['msg' => 'Sale item deleted'];
     }
