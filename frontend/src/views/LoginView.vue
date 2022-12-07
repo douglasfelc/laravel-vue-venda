@@ -9,7 +9,7 @@
           <input required type="email" id="email" v-model="email">
 
           <label for="password">Password</label>
-          <input type="text" id="password" v-model="password">
+          <input type="password" id="password" v-model="password">
         </template>
       </BaseCard>
 

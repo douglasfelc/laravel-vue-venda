@@ -1,62 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# About Vendas API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Welcome to the Vendas API development repository!
 
-## About Laravel
+* [Getting Started](#getting-started)
+* [Credentials](#credentials)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Getting Started
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Vendas API is the REST API responsible for the Vendas backend, sale platform, developed with the PHP Laravel framework, Eloquent ORM, MySQL database.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A local development environment is available to quickly get up and running. You will need a basic understanding of how to use the command line on your computer. This will allow you to set up the local development environment, to start it and stop it when necessary, and to run the tests.
 
-## Learning Laravel
+You will also need Docker installed and running on your computer. Docker is the virtualization software that powers the local development environment. Docker can be installed just like any other regular application.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Development Environment Commands
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Ensure [Docker](https://www.docker.com/products/docker-desktop) is running before using these commands.
 
-## Laravel Sponsors
+#### To start the development environment for the first time
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Clone the current repository using:
 
-### Premium Partners
+```
+git clone https://github.com/douglasfelc/laravel-vue-venda.git
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+Then in your terminal move to the repository folder `cd laravel-vue-venda`.
 
-## Contributing
+After that, first access the API folder `cd api` and run the following commands:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Configure your environment variables file.
 
-## Code of Conduct
+On Linux and Mac:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+On Windows:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+copy .env.example .env
+```
 
-## License
+#### To build and start using [Docker Compose](https://docs.docker.com/compose/reference/) and [Sail](https://laravel.com/docs/8.x/sail)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+./vendor/bin/sail up -d
+```
+
+Access the container by running the command:
+
+```
+docker exec -it backend-laravel.test-1 bash
+```
+
+When accessing the container, generate your application encryption key using:
+
+```
+php artisan key:generate
+```
+
+Generate the jwt secret using:
+
+```
+php artisan jwt:secret
+```
+
+Install the dependencies by running the command:
+
+```
+composer install
+```
+
+And perform the migrations by running the command:
+
+```
+php artisan migrate
+```
+
+Still inside the container, you can consult the list of routes using the command:
+
+```
+php artisan route:list
+```
+
+The Vendas API will be accessible at http://localhost:8000/.
+
+To stop Docker containers, run the command:
+
+```
+./vendor/bin/sail down
+```
+
+## Credentials
+
+To see all environment variables, access the .env file in the root of the API project. These are the default environment credentials of Vendas API:
+
+* API port: `8000`
+* Database connection: `mysql`
+* Database Host: `mysql`
+* Database Port: `3306`
+* Database Name: `venda`
+* Database Username: `sail`
+* Database Password: `password`

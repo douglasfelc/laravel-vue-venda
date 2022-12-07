@@ -11,6 +11,9 @@ export default {
   components: {
     AppTopNav
   },
+  created() {
+    document.title = "Vendas App"
+  },
   mounted() {
     this.$store.commit('initializeStore')
   }
@@ -31,7 +34,7 @@ html, body {
   color: #2c3e50;
 }
 
-input[type=text], input[type=email], input[type=tel], input[type=number], select {
+input, select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
