@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzAzNjIzNDAsImV4cCI6MTY3MDM2NTk0MCwibmJmIjoxNjcwMzYyMzQwLCJqdGkiOiJQZXl0bVQ1b2VTOHFhQ29wIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0GHPr2NX1P22oUIl1QoswJVR8D4eZrl72m5bumTOyL8',
+    token: '',
     clients: {},
     payment_methods: {},
     postal_codes: {},
@@ -13,6 +13,41 @@ export default createStore({
   getters: {
   },
   mutations: {
+
+    login(context, data) {
+      let url = 'http://localhost:8000/api/v1/login/'
+
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json'
+        }
+      }
+
+      axios.post(url, data, config)
+        .then((response) => {
+          let token = 'Bearer '+response.data.token
+          localStorage.setItem('token', token)
+          window.open('/', '_self')
+        })
+        .catch(error => {
+          alert(error)
+          console.log('Error: ' + error)
+        })
+    },
+
+    logout(state) {
+      state.token = '';
+      localStorage.removeItem('token')
+      window.open('/login', '_self')
+    },
+
+    initializeStore(state) {
+      if(localStorage.getItem('token')) {
+        state.token = localStorage.getItem('token')
+      }
+    },
+
     storeClients(state, payload) {
       state.clients = payload
     },

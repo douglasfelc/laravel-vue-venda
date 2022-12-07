@@ -20,6 +20,11 @@ import BaseCard from '@/components/BaseCard.vue'
 export default {
   components: {
     BaseCard
+  },
+  beforeCreate() {
+    if( !this.$store.state.token ){
+      window.open('/login', '_self')
+    }
   }
 }
 </script>

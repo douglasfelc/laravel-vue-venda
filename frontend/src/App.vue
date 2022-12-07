@@ -1,5 +1,5 @@
 <template>
-  <AppTopNav/>
+  <AppTopNav v-if="$store.state.token" />
   <router-view/>
 </template>
 
@@ -10,6 +10,9 @@ export default {
   name: 'App',
   components: {
     AppTopNav
+  },
+  mounted() {
+    this.$store.commit('initializeStore')
   }
 }
 </script>

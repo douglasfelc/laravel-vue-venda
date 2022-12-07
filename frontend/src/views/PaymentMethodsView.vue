@@ -50,6 +50,11 @@ export default {
   },
   created() {
     this.$store.dispatch('getPaymentMethods')
+  },
+  beforeCreate() {
+    if( !this.$store.state.token ){
+      window.open('/login', '_self')
+    }
   }
 }
 </script>

@@ -76,6 +76,11 @@ export default {
   },
   mounted() {
     this.load()
+  },
+  beforeCreate() {
+    if( !this.$store.state.token ){
+      window.open('/login', '_self')
+    }
   }
 }
 </script>

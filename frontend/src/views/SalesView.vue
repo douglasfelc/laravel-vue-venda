@@ -51,6 +51,11 @@ export default {
   },
   created() {
     this.$store.dispatch('getSales')
+  },
+  beforeCreate() {
+    if( !this.$store.state.token ){
+      window.open('/login', '_self')
+    }
   }
 }
 </script>

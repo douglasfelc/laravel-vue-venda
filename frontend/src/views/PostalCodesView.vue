@@ -42,6 +42,11 @@ export default {
   },
   created() {
     this.$store.dispatch('getPostalCodes')
+  },
+  beforeCreate() {
+    if( !this.$store.state.token ){
+      window.open('/login', '_self')
+    }
   }
 }
 </script>

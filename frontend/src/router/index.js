@@ -10,77 +10,87 @@ const routes = [
   {
     path: '/clients',
     name: 'clients',
-    component: () => import(/* webpackChunkName: "clients" */ '../views/ClientsView.vue')
+    component: () => import('../views/ClientsView.vue')
   },
   {
     path: '/client/:id',
     name: 'client',
-    component: () => import(/* webpackChunkName: "client" */ '../views/ClientView.vue')
+    component: () => import('../views/ClientView.vue')
   },
   {
     path: '/new-client',
     name: 'new-client',
-    component: () => import(/* webpackChunkName: "new-client" */ '../views/ClientView.vue')
+    component: () => import('../views/ClientView.vue')
   },
   {
     path: '/products',
     name: 'products',
-    component: () => import(/* webpackChunkName: "products" */ '../views/ProductsView.vue')
+    component: () => import('../views/ProductsView.vue')
   },
   {
     path: '/product/:id',
     name: 'product',
-    component: () => import(/* webpackChunkName: "product" */ '../views/ProductView.vue')
+    component: () => import('../views/ProductView.vue')
   },
   {
     path: '/new-product',
     name: 'new-product',
-    component: () => import(/* webpackChunkName: "new-product" */ '../views/ProductView.vue')
+    component: () => import('../views/ProductView.vue')
   },
   {
     path: '/postal-codes',
     name: 'postal-codes',
-    component: () => import(/* webpackChunkName: "postal-codes" */ '../views/PostalCodesView.vue')
+    component: () => import('../views/PostalCodesView.vue')
   },
   {
     path: '/postal-code/:id',
     name: 'postal-code',
-    component: () => import(/* webpackChunkName: "postal-code" */ '../views/PostalCodeView.vue')
+    component: () => import('../views/PostalCodeView.vue')
   },
   {
     path: '/new-postal-code',
     name: 'new-postal-code',
-    component: () => import(/* webpackChunkName: "new-postal-code" */ '../views/PostalCodeView.vue')
+    component: () => import('../views/PostalCodeView.vue')
   },
   {
     path: '/payment-methods',
     name: 'payment-methods',
-    component: () => import(/* webpackChunkName: "payment-methods" */ '../views/PaymentMethodsView.vue')
+    component: () => import('../views/PaymentMethodsView.vue')
   },
   {
     path: '/payment-method/:id',
     name: 'payment-method',
-    component: () => import(/* webpackChunkName: "payment-method" */ '../views/PaymentMethodView.vue')
+    component: () => import('../views/PaymentMethodView.vue')
   },
   {
     path: '/new-payment-method',
     name: 'new-payment-method',
-    component: () => import(/* webpackChunkName: "new-payment-method" */ '../views/PaymentMethodView.vue')
+    component: () => import('../views/PaymentMethodView.vue')
   },
   {
     path: '/sales',
     name: 'sales',
-    component: () => import(/* webpackChunkName: "sales" */ '../views/SalesView.vue')
+    component: () => import('../views/SalesView.vue')
   },
   {
     path: '/sale/:id',
     name: 'sale',
-    component: () => import(/* webpackChunkName: "sale" */ '../views/SaleView.vue')
+    component: () => import('../views/SaleView.vue')
   },
   {
     path: '/new-sale',
     name: 'new-sale',
-    component: () => import(/* webpackChunkName: "new-sale" */ '../views/SaleView.vue')
+    component: () => import('../views/SaleView.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('../views/LoginView.vue')
   }
 ]
 

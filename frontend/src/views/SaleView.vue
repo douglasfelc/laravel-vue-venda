@@ -187,6 +187,11 @@ export default {
     this.$store.dispatch('getClients')
     this.$store.dispatch('getProducts')
     this.$store.dispatch('getPaymentMethods')
+  },
+  beforeCreate() {
+    if( !this.$store.state.token ){
+      window.open('/login', '_self')
+    }
   }
 }
 </script>
