@@ -132,8 +132,6 @@ export default {
       if( this.$route.params.id ){
         this.id = this.$route.params.id
 
-        let url = 'http://localhost:8000/api/v1/sale/'+this.id
-
         let config = {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -142,11 +140,37 @@ export default {
           }
         }
 
+        let url = 'http://localhost:8000/api/v1/sale/'+this.id
         axios.get(url, config)
           .then(response => {
             let obj = response.data
             this.client = obj.client_id
             this.payment_method = obj.payment_methods_id
+          })
+          .catch(error => {
+              alert(error)
+              console.log('Error: ' + error)
+          })
+
+          let url_item = 'http://localhost:8000/api/v1/sale-item-by-sale/'+this.id
+          axios.get(url_item, config)
+          .then(response => {
+            let items = response.data
+
+            this.total = 0;
+            items.forEach((item) => {
+              let total = (item.quantity * item.price);
+              this.total+= total;
+
+              this.items.push({
+                id: item.id,
+                product: item.product_id,
+                quantity: item.quantity,
+                price: item.price,
+                total: total,
+              })
+            })
+
           })
           .catch(error => {
               alert(error)

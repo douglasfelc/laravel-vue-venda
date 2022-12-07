@@ -20,6 +20,16 @@ class SaleItemController extends Controller
     }
 
     /**
+     * Items by Sale.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function bySale($sale)
+    {
+        return SaleItem::where('sales_id', $sale)->get();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreSaleItemRequest  $request

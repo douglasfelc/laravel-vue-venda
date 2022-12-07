@@ -28,9 +28,11 @@ Route::prefix('v1')->group(function() {
 
     // Routes that require authentication
     Route::middleware('jwt.auth')->group(function() {
-        Route::post('logout', 'App\Http\Controllers\AuthController@logout')->middleware('jwt.auth');
-        Route::post('refresh', 'App\Http\Controllers\AuthController@refresh')->middleware('jwt.auth');
-        Route::post('me', 'App\Http\Controllers\AuthController@me')->middleware('jwt.auth');
+        Route::post('logout', 'App\Http\Controllers\AuthController@logout');
+        Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
+        Route::post('me', 'App\Http\Controllers\AuthController@me');
+
+        Route::get('sale-item-by-sale/{sale}', 'App\Http\Controllers\SaleItemController@bySale');
 
         Route::apiResource('client', 'App\Http\Controllers\ClientController');
         Route::apiResource('product', 'App\Http\Controllers\ProductController');
