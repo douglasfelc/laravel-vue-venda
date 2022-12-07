@@ -4,6 +4,7 @@ Welcome to the Vendas API development repository!
 
 * [Getting Started](#getting-started)
 * [Credentials](#credentials)
+* [Endpoints documentation](https://github.com/douglasfelc/laravel-vue-venda/blob/main/backend/README-ENDPOINTS.md)
 
 ## Getting Started
 
