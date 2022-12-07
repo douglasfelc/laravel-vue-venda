@@ -82,3 +82,162 @@
 `PUT` [/api/v1/sale-item/{id}](#put-sale-item) <br/>
 `PATCH` [/api/v1/sale-item/{id}](#patch-sale-item) <br/>
 `DELETE` [/api/v1/sale-item/{id}](#delete-sale-item) <br/>
+
+___
+
+## USER
+
+### POST /api/v1/user/{id}
+Create user
+
+### GET /api/v1/user/
+Get all users `authentication required`
+
+### GET /api/v1/user/{id}
+Get user by id `authentication required`
+
+### PUT /api/v1/user/{id}
+Complete update in user by id `authentication required`
+
+### PATCH /api/v1/user/{id}
+Partial update in user by id `authentication required`
+
+### DELETE /api/v1/user/{id}
+Delete user by id `authentication required`
+
+## AUTH
+
+### POST /api/v1/login/
+Make login
+
+### POST /api/v1/logout/
+Make logout `authentication required`
+
+### POST /api/v1/refresh/
+Refresh the token `authentication required`
+
+### POST /api/v1/me/
+Get logged in user `authentication required`
+
+## CLIENT
+
+### GET /api/v1/client/
+Get all clients `authentication required`
+
+### GET /api/v1/client/{id}
+Get client by id `authentication required`
+
+### POST /api/v1/client/{id}
+Create client `authentication required`
+
+### PUT /api/v1/client/{id}
+Complete update in client by id `authentication required`
+
+### PATCH /api/v1/client/{id}
+Partial update in client by id `authentication required`
+
+### DELETE /api/v1/client/{id}
+Delete client by id `authentication required`
+
+## PRODUCT
+
+### GET /api/v1/product/
+Get all products `authentication required`
+
+### GET /api/v1/product/{id}
+Get product by id `authentication required`
+
+### POST /api/v1/product/{id}
+Create product `authentication required`
+
+### PUT /api/v1/product/{id}
+Complete update in product by id `authentication required`
+
+### PATCH /api/v1/product/{id}
+Partial update in product by id `authentication required`
+
+### DELETE /api/v1/product/{id}
+Delete product by id `authentication required`
+
+## POSTAL CODE
+
+### GET /api/v1/postal-code/
+Get all postal codes `authentication required`
+
+### GET /api/v1/postal-code/{id}
+Get postal code by id `authentication required`
+
+### POST /api/v1/postal-code/{id}
+Create postal code `authentication required`
+
+### PUT /api/v1/postal-code/{id}
+Complete update in postal code by id `authentication required`
+
+### PATCH /api/v1/postal-code/{id}
+Partial update in postal code by id `authentication required`
+
+### DELETE /api/v1/postal-code/{id}
+Delete postal code by id `authentication required`
+
+## PAYMENT METHOD
+
+### GET /api/v1/payment-method/
+Get all payment methods `authentication required`
+
+### GET /api/v1/payment-method/{id}
+Get payment method by id `authentication required`
+
+### POST /api/v1/payment-method/{id}
+Create payment method `authentication required`
+
+### PUT /api/v1/payment-method/{id}
+Complete update in payment method by id `authentication required`
+
+### PATCH /api/v1/payment-method/{id}
+Partial update in payment method by id `authentication required`
+
+### DELETE /api/v1/payment-method/{id}
+Delete payment method by id `authentication required`
+
+## SALE
+
+### GET /api/v1/sale/
+Get all sales `authentication required`
+
+### GET /api/v1/sale/{id}
+Get sale by id `authentication required`
+
+### POST /api/v1/sale/{id}
+Create sale `authentication required`
+
+### PUT /api/v1/sale/{id}
+Complete update in sale by id `authentication required`
+
+### PATCH /api/v1/sale/{id}
+Partial update in sale by id `authentication required`
+
+### DELETE /api/v1/sale/{id}
+Delete sale by id `authentication required`
+
+## SALE ITEM
+
+### GET /api/v1/sale-item/
+Get all sale items `authentication required`
+
+### GET /api/v1/sale-item/{id}
+Get sale item by id `authentication required`
+
+### GET /api/v1/sale-item-by-sale/{id}
+Get sale item by sale `authentication required`
+
+### POST /api/v1/sale-item/{id}
+Create sale item `authentication required`
+
+### PUT /api/v1/sale-item/{id}
+Complete update in sale item by id `authentication required`
+
+### PATCH /api/v1/sale-item/{id}
+Partial update in sale item by id `authentication required`
+
+### DELETE /api/v1/sale-item/{id}
+Delete sale item by id `authentication required`
