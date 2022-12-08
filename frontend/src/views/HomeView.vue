@@ -16,6 +16,7 @@
 
 <script>
 import BaseCard from '@/components/BaseCard.vue'
+import router from '@/router'
 
 export default {
   components: {
@@ -23,7 +24,7 @@ export default {
   },
   beforeCreate() {
     if( !this.$store.state.token ){
-      window.open('/login', '_self')
+      router.push('/login')
     }
   }
 }

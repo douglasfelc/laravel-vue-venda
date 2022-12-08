@@ -37,6 +37,7 @@
 import BaseTop from '@/components/BaseTop.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import BaseTable from '@/components/BaseTable.vue'
+import router from '@/router'
 
 export default {
   components: {
@@ -46,7 +47,7 @@ export default {
   },
   methods: {
     redirect(id) {
-      window.open('/sale/'+id, '_self')
+      router.push('/sale/'+id)
     }
   },
   created() {
@@ -54,7 +55,7 @@ export default {
   },
   beforeCreate() {
     if( !this.$store.state.token ){
-      window.open('/login', '_self')
+      router.push('/login')
     }
   }
 }

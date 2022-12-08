@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import router from '@/router'
 
 export default createStore({
   state: {
@@ -80,7 +81,7 @@ export default createStore({
       axios.post(url, data, config)
         .then(() => {
           alert('Successful User Registration')
-          window.open('/login', '_self')
+          router.push('/login')
         })
         .catch(error => {
             alert(error)
@@ -104,7 +105,7 @@ export default createStore({
       axios.post(url, data, config)
         .then(() => {
           alert('Successful Client Registration')
-          window.open('/clients', '_self')
+          router.push('/clients')
         })
         .catch(error => {
             alert(error)
@@ -128,7 +129,7 @@ export default createStore({
       axios.post(url, data, config)
         .then(() => {
           alert('Successful Postal Code Registration')
-          window.open('/postal-codes', '_self')
+          router.push('/postal-codes')
         })
         .catch(error => {
             alert(error)
@@ -152,7 +153,7 @@ export default createStore({
       axios.post(url, data, config)
         .then(() => {
           alert('Successful Product Registration')
-          window.open('/products', '_self')
+          router.push('/products')
         })
         .catch(error => {
             alert(error)
@@ -176,7 +177,7 @@ export default createStore({
       axios.post(url, data, config)
         .then(() => {
           alert('Successful Payment Method Registration')
-          window.open('/payment-methods', '_self')
+          router.push('/payment-methods')
         })
         .catch(error => {
             alert(error)
@@ -223,7 +224,7 @@ export default createStore({
           })
 
           alert('Successful sale')
-          window.open('/sales', '_self')
+          router.push('/sales')
         })
         .catch(error => {
             alert(error)

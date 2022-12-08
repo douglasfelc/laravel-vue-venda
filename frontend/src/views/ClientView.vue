@@ -39,6 +39,7 @@
 <script>
 import BaseCard from '@/components/BaseCard.vue'
 import BaseButton from '@/components/BaseButton.vue'
+import router from '@/router'
 
 import axios from 'axios';
 
@@ -108,7 +109,7 @@ export default {
   },
   beforeCreate() {
     if( !this.$store.state.token ){
-      window.open('/login', '_self')
+      router.push('/login')
     }
   }
 }

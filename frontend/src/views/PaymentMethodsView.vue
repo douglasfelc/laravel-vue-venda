@@ -31,6 +31,7 @@
 import BaseTop from '@/components/BaseTop.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import BaseTable from '@/components/BaseTable.vue'
+import router from '@/router'
 
 export default {
   data() {
@@ -45,7 +46,7 @@ export default {
   },
   methods: {
     redirect(id) {
-      window.open('/payment-method/'+id, '_self')
+      router.push('/payment-method/'+id)
     }
   },
   created() {
@@ -53,7 +54,7 @@ export default {
   },
   beforeCreate() {
     if( !this.$store.state.token ){
-      window.open('/login', '_self')
+      router.push('/login')
     }
   }
 }

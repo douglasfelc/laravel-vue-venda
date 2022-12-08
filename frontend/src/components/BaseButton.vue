@@ -33,7 +33,7 @@ export default {
   methods: {
     onClick() {
       if( this.redirect ){
-        window.open(this.redirect, '_self')
+        this.$router.push(this.redirect)
       }
     }
   }
