@@ -18,6 +18,11 @@
           Log In
         </template>
       </BaseButton>
+
+      <div class="register">
+        <router-link to="/new-user">Register</router-link>
+      </div>
+      
     </form>
 
   </div>
@@ -50,8 +55,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .client {
+  text-align: center;
   padding: 200px 200px;
+}
+
+.register {
+  margin-top: 20px;
 }
 </style>

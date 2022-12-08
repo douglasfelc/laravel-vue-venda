@@ -66,6 +66,28 @@ export default createStore({
   },
   actions: {
 
+    addUser(context, data) {
+      let url = 'http://localhost:8000/api/v1/user/'
+
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': data.get('token')
+        }
+      }
+
+      axios.post(url, data, config)
+        .then(() => {
+          alert('Successful User Registration')
+          window.open('/login', '_self')
+        })
+        .catch(error => {
+            alert(error)
+            console.log('Error: ' + error)
+        })
+    },
+    
     addClient(context, data) {
       let url = 'http://localhost:8000/api/v1/client/'
 

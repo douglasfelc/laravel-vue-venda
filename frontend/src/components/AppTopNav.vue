@@ -6,6 +6,7 @@
     <router-link to="/postal-codes">Postal Codes</router-link>
     <router-link to="/payment-methods">Payment Methods</router-link>
     <router-link to="/sales">Sales</router-link>
+    <router-link to="/user">Profile</router-link>
     <a href="#logout" @click="logout">Exit</a>
   </nav>
 </template>
