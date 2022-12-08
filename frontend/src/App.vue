@@ -58,4 +58,9 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+.flex-container {
+  display: flex;
+  align-items: stretch;
+}
 </style>

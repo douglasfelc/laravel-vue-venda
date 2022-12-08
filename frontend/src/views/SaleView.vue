@@ -40,13 +40,20 @@
           </BaseTable>
         </template>
         <template v-slot:footer>
-          <BaseButton @click="addItem()">
-            <template v-slot>
-              New product
-            </template>
-          </BaseButton>
 
-          Total: {{ total }}
+          <div class="flex-container">
+            <div class="new-product" >
+              <BaseButton @click="addItem()">
+                <template v-slot>
+                  New product
+                </template>
+              </BaseButton>
+            </div>
+            <div class="total">
+              Total: {{ total }}
+            </div>
+          </div>
+          
         </template>
       </BaseCard>
 
@@ -196,29 +203,12 @@ export default {
 }
 </script>
 
-<style>
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+<style scoped>
+.new-product {
+  flex-grow: 1;
 }
 
-input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
+.total {
+  flex-grow: 1; text-align: right; padding: 15px;
 }
 </style>
